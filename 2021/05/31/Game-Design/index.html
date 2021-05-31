@@ -6,13 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ZhechengLiao.github.io">
-  <title>Zhecheng Liao</title>
+  <title>Game_Design.md | Zhecheng Liao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhecheng Liao">
-<meta property="og:url" content="https://zhechengliao.github.io/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Game_Design.md">
+<meta property="og:url" content="https://zhechengliao.github.io/2021/05/31/Game-Design/index.html">
 <meta property="og:site_name" content="Zhecheng Liao">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-31T02:52:11.000Z">
+<meta property="article:modified_time" content="2021-05-31T02:52:11.375Z">
 <meta property="article:author" content="Zhecheng Liao">
 <meta name="twitter:card" content="summary">
   
@@ -140,106 +142,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-crawler" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Game-Design" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/31/crawler/">Project 4: Web Crawler for Historical Price of Bitcoin</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/31/crawler/" class="archive-article-date">
-  	<time datetime="2021-05-31T11:21:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Part-1-Introduction"><a href="#Part-1-Introduction" class="headerlink" title="Part 1: Introduction"></a>Part 1: Introduction</h2><p>Recently,  one of my classmates need me to help her with a project, which is mainly about bitcoin and other digital currency. My job is to craw the historical price of bitcoin. My result is below.</p>
-<p><img src="https://i.loli.net/2021/05/31/WRctyYKEznjaVZ2.png" alt="BTC_Price.png"></p>
-<p><img src="https://i.loli.net/2021/05/31/kLnR3HzbmFuJWPA.png" alt="BTC_voulme.png"></p>
-<h2 id="Part-2-Get-the-Data"><a href="#Part-2-Get-the-Data" class="headerlink" title="Part 2: Get the Data"></a>Part 2: Get the Data</h2><p>First, we need to import all the libraries we need to crawl the data. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> csv</span><br></pre></td></tr></table></figure>
-
-<p>Second, we need to know where we can get the data, after searching a while, I got a website which record all historical price of BTC, <a target="_blank" rel="noopener" href="https://coinmarketcap.com/">https://coinmarketcap.com</a>.</p>
-<p><img src="https://i.loli.net/2021/05/31/RUYF7GK8AQhD4Tp.png" alt="屏幕截图 2021-05-31 193220.png"></p>
-<p>And thanks for google, after pressing the F12, we can get all coding source of this website. </p>
-<p><img src="https://i.loli.net/2021/05/31/RYXxmJ4yvOZ8WPj.png" alt="屏幕截图 2021-05-31 193556.png"></p>
-<p>Like this, and then I need to get the API of the historical price of BTC, then still thanks for google, we can just easily press something, then there is an API, <a target="_blank" rel="noopener" href="https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=1&amp;convertId=2781&amp;timeStart=1590924945&amp;timeEnd=1622460945">https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=1&amp;convertId=2781&amp;timeStart=1590924945&amp;timeEnd=1622460945</a>.</p>
-<p><img src="https://i.loli.net/2021/05/31/QRSz1XkYEH9dJLs.png" alt="屏幕截图 2021-05-31 193819.png"></p>
-<p>Ok, after getting API, we can write our program to crawl them.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">time_stamp = <span class="built_in">int</span>(time.time())</span><br><span class="line">print(<span class="string">f&quot;Now timestamp:<span class="subst">&#123;time_stamp&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">request_link = <span class="string">f&quot;https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=1&amp;convertId=2781&amp;timeStart=1590849653&amp;timeEnd=1622385653&quot;</span></span><br><span class="line">print(<span class="string">&quot;Request link: &quot;</span> + request_link)</span><br><span class="line"></span><br><span class="line">r = requests.get(url = request_link)</span><br><span class="line"><span class="comment"># print(r.content)</span></span><br><span class="line"></span><br><span class="line">content = json.loads(r.content)</span><br><span class="line"><span class="comment"># print(type(content))</span></span><br><span class="line"></span><br><span class="line">quoteList = content[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;quotes&#x27;</span>]</span><br><span class="line"><span class="comment"># print(quoteList)</span></span><br></pre></td></tr></table></figure>
-
-<p>After these code, we can get all information of the BTC, while we only need price and volume, so we just clean some data, and write them into a csv profile.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;BTC.csv&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf8&#x27;</span>,newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    csv_write = csv.writer(f)</span><br><span class="line">    csv_head = [<span class="string">&quot;Date&quot;</span>,<span class="string">&quot;Price&quot;</span>,<span class="string">&quot;Volume&quot;</span>]</span><br><span class="line">    csv_write.writerow(csv_head)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> quote <span class="keyword">in</span> quoteList:</span><br><span class="line">        quote_date= quote[<span class="string">&quot;timeOpen&quot;</span>][:<span class="number">10</span>]</span><br><span class="line">        quote_price = <span class="string">&quot;&#123;:.2f&#125;&quot;</span>.<span class="built_in">format</span>(quote[<span class="string">&quot;quote&quot;</span>][<span class="string">&quot;close&quot;</span>])</span><br><span class="line">        quote_volume = <span class="string">&quot;&#123;:.2f&#125;&quot;</span>.<span class="built_in">format</span>(quote[<span class="string">&quot;quote&quot;</span>][<span class="string">&quot;volume&quot;</span>])</span><br><span class="line">        csv_write.writerow([quote_date,quote_price,quote_volume])</span><br><span class="line">        </span><br><span class="line">print(<span class="string">&quot;Done&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>Finally, we get all the data we want. </p>
-<h2 id="Part-3-Organize-Data"><a href="#Part-3-Organize-Data" class="headerlink" title="Part 3: Organize Data"></a>Part 3: Organize Data</h2><p>And we can still make a line graph to show the change tendency of the BTC. Here we use pandas, and matplotlib to finish this task.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">series = pd.DataFrame()</span><br><span class="line">df = pd.read_csv(<span class="string">&quot;BTC.csv&quot;</span>)</span><br><span class="line">series[<span class="string">&#x27;Date&#x27;</span>] = df[<span class="string">&#x27;Date&#x27;</span>].tolist()</span><br><span class="line">series[<span class="string">&#x27;Price&#x27;</span>] = df[<span class="string">&#x27;Price&#x27;</span>].tolist()</span><br><span class="line">series[<span class="string">&#x27;Volume&#x27;</span>] = df[<span class="string">&#x27;Volume&#x27;</span>].tolist()</span><br><span class="line"></span><br><span class="line">print(series)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">ax = plt.gca()</span><br><span class="line">series.plot(kind=<span class="string">&#x27;line&#x27;</span>, x=<span class="string">&#x27;Date&#x27;</span>, y=<span class="string">&#x27;Price&#x27;</span>, ax=ax)</span><br><span class="line">plt.xticks(rotation=<span class="number">30</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.cla()</span><br><span class="line">ax = plt.gca()</span><br><span class="line">series.plot(kind=<span class="string">&#x27;line&#x27;</span>, x=<span class="string">&#x27;Date&#x27;</span>, y=<span class="string">&#x27;Volume&#x27;</span>, ax=ax)</span><br><span class="line">plt.xticks(rotation=<span class="number">30</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>In the end, we get the graph below.</p>
-<p><img src="https://i.loli.net/2021/05/31/WRctyYKEznjaVZ2.png" alt="BTC_Price.png"></p>
-<p><img src="https://i.loli.net/2021/05/31/kLnR3HzbmFuJWPA.png" alt="BTC_voulme.png"></p>
-<p>And it is the same way to get other digital currency.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/31/crawler/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Game-Design" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/31/Game-Design/">Game_Design.md</a>
+    <h1 class="article-title" itemprop="name">
+      Game_Design.md
     </h1>
   
 
@@ -263,16 +173,33 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/31/Game-Design/">Show all >></a>
-        </p>
-      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/05/31/crawler/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Project 4: Web Crawler for Historical Price of Bitcoin
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/17/3D-Model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">3D_Model</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -292,424 +219,14 @@
 
 
 
-
   
-    <article id="post-3D-Model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/17/3D-Model/">3D_Model</a>
-    </h1>
   
 
-        
-        <a href="/2021/05/17/3D-Model/" class="archive-article-date">
-  	<time datetime="2021-05-17T14:47:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Project-1-Mountain-House"><a href="#Project-1-Mountain-House" class="headerlink" title="Project 1: Mountain House"></a>Project 1: Mountain House</h2><p>This time, I learned C4D to show my resent idea about 3D model, here is the result.</p>
-<p><img src="https://i.loli.net/2021/05/24/q4yAFTJVIzfEeng.png" alt="QQ图片20210524171734.png"></p>
-<p><img src="https://i.loli.net/2021/05/24/YbLDl9HQBfs7JTS.png" alt="QQ图片20210524171802.png"></p>
-<h2 id="Project-2-Boat-on-the-sea"><a href="#Project-2-Boat-on-the-sea" class="headerlink" title="Project 2: Boat on the sea"></a>Project 2: Boat on the sea</h2><p>This is also a C4D project, it takes 2 days to finished.</p>
-<p><img src="https://i.loli.net/2021/05/31/1bSNvhE3Po6tzVu.png" alt="2B873078ECE3EF54BAE35C1FAAA323BF.png"></p>
-<p><img src="https://i.loli.net/2021/05/25/7NAhbUurPWtjKlv.png" alt="方块船.png"></p>
-<h2 id="Project-3-Switch"><a href="#Project-3-Switch" class="headerlink" title="Project 3: Switch"></a>Project 3: Switch</h2><center><iframe height="600" width="800" src="//player.bilibili.com/player.html?aid=845555301&bvid=BV1T54y1L7Rr&cid=339339996&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></center>
-
-<p><img src="https://i.loli.net/2021/05/17/EUbyBpe5TLo2C4j.jpg" alt="Switch.0.jpg"><img src="https://i.loli.net/2021/05/17/HK9C6STaIUwWEvA.jpg" alt="Switch.4.jpg"><img src="https://i.loli.net/2021/05/17/FahQHIWPCMnN79m.jpg" alt="Switch.2.jpg"></p>
-<h2 id="Project-4-Wireless-Charger"><a href="#Project-4-Wireless-Charger" class="headerlink" title="Project 4: Wireless Charger"></a>Project 4: Wireless Charger</h2><p><img src="https://i.loli.net/2021/05/17/pB4rUXJcK3bk5CL.jpg" alt="Charger.1.jpg"><img src="https://i.loli.net/2021/05/17/pbhtW8lcNXFe6G3.jpg" alt="Charger.2.jpg"></p>
-<h2 id="Project-5-Key-Board"><a href="#Project-5-Key-Board" class="headerlink" title="Project 5: Key Board"></a>Project 5: Key Board</h2><p><img src="https://i.loli.net/2021/05/17/qBwQaeEZHum1bsf.jpg" alt="KeyBoard.1.jpg"><img src="https://i.loli.net/2021/05/17/NfOmyJ4iK2dzEwe.jpg" alt="KeyBoard.2.jpg"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">3D Model</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">leisure</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/17/3D-Model/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leisure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/13/Leisure/">Leisure</a>
-    </h1>
   
 
-        
-        <a href="/2021/03/13/Leisure/" class="archive-article-date">
-  	<time datetime="2021-03-13T03:45:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>During winter vacation, I had done all the work and there is nothing to do. Therefore, I decided to do a picture puzzle to kill the time(which takes about 2 days). The video is below.</li>
-</ul>
-<center><iframe height="600" width="800" src="//player.bilibili.com/player.html?aid=972032611&bvid=BV1Ap4y1h79n&cid=309586952&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></center>
-
-<ul>
-<li>A few days ago, I considered to reset my room, because I need to do some project in one place; therefore, I bought an L shape desk and then build it myself.</li>
-</ul>
-<center><iframe height="600" width="800" src="//player.bilibili.com/player.html?aid=758040186&bvid=BV1264y127Kx&cid=339082968&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></center>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">leisure</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">picture puzzle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/13/Leisure/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="Project-L-ink" class="article article-type-Project  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/08/L-ink/">Project 2: L-ink</a>
-    </h1>
   
 
-        
-        <a href="/2021/03/08/L-ink/" class="archive-article-date">
-  	<time datetime="2021-03-07T23:58:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>This is an open resource project post on Github (<a target="_blank" rel="noopener" href="https://github.com/peng-zhihui/L-ink_Card">https://github.com/peng-zhihui/L-ink_Card</a>), which solves some problems on personal usage of IC card.</p>
-<p><img src="https://i.loli.net/2021/03/08/x3zDJMEfkaPFKu9.jpg" alt="L-ink_V0.5.jpg"></p>
-<h2 id="2-Hardware"><a href="#2-Hardware" class="headerlink" title="2. Hardware"></a>2. Hardware</h2><p>First, we should design a chip to run all the function of this NFC card.</p>
-<p>Then, </p>
-<p><img src="https://i.loli.net/2021/03/08/nQZb4IFKCBWlAvd.png#pic_center" alt="PCB.png"></p>
-<p><img src="https://i.loli.net/2021/03/08/3urFWHzADoENs5g.png#pic_center" alt="Sch.png"></p>
-<p>After designing, I ask a company to help me to make it real, and after 2 days waiting, I got all the material and PCB board.</p>
-<h2 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Project</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">3D Model</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/08/L-ink/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Access_Control" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/06/Access_Control/">Project 1: Access Control</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/06/Access_Control/" class="archive-article-date">
-  	<time datetime="2021-03-05T21:49:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Part-One-Software"><a href="#Part-One-Software" class="headerlink" title="Part: One Software"></a>Part: One Software</h2><h3 id="Step-1-Create-an-Application"><a href="#Step-1-Create-an-Application" class="headerlink" title="Step 1: Create an Application"></a>Step 1: Create an Application</h3><p>This project employee an face recognition API from Baidu Intelligent Cloud, which saved a lot of time on building a face recognition neutral net system. </p>
-<p>First, sign in Baidu Intelligent Cloud and create an application.</p>
-<p><img src="https://i.loli.net/2021/03/07/Kx5gw7T9z6DkQHv.png" alt="图1.png"></p>
-<p>Then, download the python SDK (Because we will use Raspberry Pi later)</p>
-<p><img src="https://i.loli.net/2021/03/07/nDwk9oUCBrHvzK7.png" alt="图2.png"></p>
-<p>Last, we record some information of the application and use the Xftp to transfer the SDK file to Raspberry Pi (There are lots of tutorials on the google, if you do not know how to transfer, you can google it)</p>
-<h3 id="Step-2-Raspberry-Pi-Set-Up"><a href="#Step-2-Raspberry-Pi-Set-Up" class="headerlink" title="Step 2: Raspberry Pi Set Up"></a>Step 2: Raspberry Pi Set Up</h3><p>First, you need download pip, I believe most of the Raspberry Pi has already had python and pip, so you can ignore this step. As for those machines which do not have pip and python, you can google it, since it is a quite easy step.</p>
-<p>Then, you need to download setuptools.</p>
-<p>a. Download the setuptools with wget</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.pythonhosted.org/packages/37/1b/b25507861991beeade31473868463dad0e58b1978c209de27384ae541b0b/setuptools-40.6.3.zip</span><br></pre></td></tr></table></figure>
-
-<p>b. Unzip the setuptools</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip setuptools-40.6.3.zip</span><br></pre></td></tr></table></figure>
-
-<p>c. Setup</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd setuptools-40.6.3</span><br><span class="line">sudo python setup.py</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
-
-<p>Finally, we need to download Face recognition SDK</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install baidu-aip</span><br></pre></td></tr></table></figure>
-
-<p>To test weather the baidu-aip success, we need write a python file to test the face recognition.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd aip-python-sdk-2.2.15</span><br><span class="line">vim test.py</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipFace</span><br><span class="line"><span class="keyword">from</span> picamera <span class="keyword">import</span> PiCamera</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> RPi.GPIO <span class="keyword">as</span> GPIO</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># Baidu face recognition API information</span></span><br><span class="line">APP_ID = <span class="string">&#x27;23679627&#x27;</span> <span class="comment"># Your app id</span></span><br><span class="line">API_KEY = <span class="string">&#x27;iM3qIQZqCghHzF3DT4MSGvEo&#x27;</span> <span class="comment"># Your API KEY</span></span><br><span class="line">SECRET_KEY = <span class="string">&#x27;bGon6650ssEl4IFppx57HEUG6UZSG7O2&#x27;</span><span class="comment"># Your secret key</span></span><br><span class="line">client = AipFace(APP_ID, API_KEY, SECRET_KEY)</span><br><span class="line"><span class="comment"># the way of image encode</span></span><br><span class="line">IMAGE_TYPE = <span class="string">&#x27;base64&#x27;</span></span><br><span class="line">camera = PiCamera()</span><br><span class="line"><span class="comment"># group</span></span><br><span class="line">GROUP = <span class="string">&#x27;01&#x27;</span></span><br><span class="line"><span class="comment"># photo function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getimage</span>():</span></span><br><span class="line">    camera.resolution = (<span class="number">1024</span>,<span class="number">768</span>)</span><br><span class="line">    camera.start_preview()</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    camera.capture(<span class="string">&#x27;faceimage.jpg&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># Photo form transform</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tramsimage</span>():</span></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;faceimage.jpg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">    img = base64.b64encode(f.read())</span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"><span class="comment"># load to baidu api to recognition</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">go_api</span>(<span class="params">image</span>):</span></span><br><span class="line">    result = client.search(<span class="built_in">str</span>(image,<span class="string">&#x27;utf-8&#x27;</span>),IMAGE_TYPE GROUP)</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&#x27;error_msg&#x27;</span>] == <span class="string">&#x27;SUCCESS&#x27;</span>:</span><br><span class="line">        name = result[<span class="string">&#x27;result&#x27;</span>][<span class="string">&#x27;user_list&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;user_id&#x27;</span>]</span><br><span class="line">        score = result[<span class="string">&#x27;result&#x27;</span>][<span class="string">&#x27;user_list&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> score &gt; <span class="number">80</span>:</span><br><span class="line">            <span class="keyword">if</span> name == <span class="string">&#x27;ZhechengLiao&#x27;</span>:</span><br><span class="line">                print(<span class="string">&#x27;欢迎%s !&#x27;</span> % name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">&#x27;对不起，我不认识你&#x27;</span>)</span><br><span class="line">        	name = <span class="string">&#x27;Unknow&#x27;</span></span><br><span class="line">   			<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># record the people in log.txt</span></span><br><span class="line">    	current_time = time.asctime(time.localtime(time.time()))</span><br><span class="line">    	f = <span class="built_in">open</span>(<span class="string">&#x27;log.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    	f.write(<span class="string">&#x27;Person:&#x27;</span>+name+<span class="string">&#x27;&#x27;</span>+<span class="string">&#x27;Time:&#x27;</span>+<span class="built_in">str</span>(current_time)+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    	f.close()</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">	<span class="keyword">if</span> result[<span class="string">&#x27;error_msg&#x27;</span>] == <span class="string">&#x27;pic not has face&#x27;</span>:</span><br><span class="line">        print(<span class="string">&#x27;检测不到人脸&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(result[<span class="string">&#x27;error_code&#x27;</span>]+<span class="string">&#x27;&#x27;</span>+result[<span class="string">&#x27;error_code&#x27;</span>])</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">&#x27;准备&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">            getimage()</span><br><span class="line">            img = transimage()</span><br><span class="line">            res = go_api(img)</span><br><span class="line">            <span class="keyword">if</span> res == <span class="number">1</span>:</span><br><span class="line">                print(<span class="string">&#x27;开门&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">&#x27;关门&#x27;</span>)</span><br><span class="line">            time.sleep(<span class="number">3</span>)</span><br><span class="line">            print(<span class="string">&#x27;稍等三秒进入下一个&#x27;</span>)</span><br><span class="line">            time.sleep(<span class="number">5</span>) </span><br></pre></td></tr></table></figure>
-
-<p>As if the camera can recognize who are you, then you finish almost all software part. Then, you can step in the hardware part.</p>
-<h2 id="Part​-Two-articulated-lorry-Two-Hardware"><a href="#Part​-Two-articulated-lorry-Two-Hardware" class="headerlink" title="Part​ Two: articulated_lorry: Two Hardware"></a>Part​ Two: articulated_lorry: Two Hardware</h2><table>
-<thead>
-<tr>
-<th align="left">Item Lists</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Wires $\times$ A lots of</td>
-</tr>
-<tr>
-<td align="left">Control actuator (SG90) $\times$ 1</td>
-</tr>
-<tr>
-<td align="left">Bluetooth Part (HC-05) $\times$ 1</td>
-</tr>
-<tr>
-<td align="left">Camera (CSI) $\times$ 1</td>
-</tr>
-<tr>
-<td align="left">Arduino $\times$ 1</td>
-</tr>
-</tbody></table>
-<h3 id="Step-1-Way-to-connect-these-items"><a href="#Step-1-Way-to-connect-these-items" class="headerlink" title="Step 1: Way to connect these items"></a>Step 1: Way to connect these items</h3><p><img src="https://i.loli.net/2021/03/07/g3C4fmo5rT7Yka2.png" alt="图3.png"></p>
-<h3 id="Step-2-Download-Bluetooth-Module"><a href="#Step-2-Download-Bluetooth-Module" class="headerlink" title="Step 2: Download Bluetooth Module"></a>Step 2: Download Bluetooth Module</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libbluetooth-dev</span><br><span class="line">python3 -m pip install pybluez</span><br></pre></td></tr></table></figure>
-
-<p>Then, Use the Raspberry Pi to connect the HC-05.</p>
-<p>Then, define the function of the Bluetooth on Raspberry Pi.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bluetooth</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">servo_init</span>():</span> <span class="comment"># init of the bluetooth </span></span><br><span class="line">    bd_addr = <span class="string">&quot;20:20:08:21:16:99&quot;</span> <span class="comment"># when you stop the mouse on HC-05 when you connect the bluetooth, you can get the address of the bluetooth.</span></span><br><span class="line">    port = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)</span><br><span class="line">    sock.connect((bd_addr, port))<span class="comment"># create connect</span></span><br><span class="line"></span><br><span class="line">    sock.send(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">    sock.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bt_open</span>():</span> <span class="comment"># open door module</span></span><br><span class="line">    bd_addr = <span class="string">&quot;20:20:08:21:16:99&quot;</span></span><br><span class="line">    port = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)</span><br><span class="line">    sock.connect((bd_addr, port))</span><br><span class="line"></span><br><span class="line">    sock.send(<span class="string">&quot;2&quot;</span>)</span><br><span class="line">    sock.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bt_close</span>():</span> <span class="comment"># close door module</span></span><br><span class="line">    bd_addr = <span class="string">&quot;20:20:08:21:16:99&quot;</span></span><br><span class="line">    port = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)</span><br><span class="line">    sock.connect((bd_addr, port))</span><br><span class="line"></span><br><span class="line">    sock.send(<span class="string">&quot;3&quot;</span>)</span><br><span class="line">    sock.close()</span><br></pre></td></tr></table></figure>
-
-<p>Then, we can write a code to control the control actuator with Arduino IDE.</p>
-<p><img src="https://i.loli.net/2021/03/07/Gw3cKeZ4nNPiBQm.png#pic_center" alt="图4.png"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line">Servo myservo;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  myservo.attach(<span class="number">9</span>);</span><br><span class="line">  myservo.write(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">  <span class="keyword">while</span>(Serial.available())&#123;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    c = Serial.read();</span><br><span class="line">    Serial.println(c);</span><br><span class="line">    <span class="keyword">switch</span>(c)&#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:servo_init();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:open_the_door();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:close_the_door();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">open_the_door</span><span class="params">()</span></span>&#123;</span><br><span class="line">  myservo.write(<span class="number">170</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">close_the_door</span><span class="params">()</span></span>&#123;</span><br><span class="line">  myservo.write(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">servo_init</span><span class="params">()</span></span>&#123;</span><br><span class="line">  myservo.write(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>Ok, the hardware part is finished.</p>
-<h2 id="Part-Three-Connect-Hardware-and-Software"><a href="#Part-Three-Connect-Hardware-and-Software" class="headerlink" title="Part Three: Connect Hardware and Software"></a>Part Three: Connect Hardware and Software</h2><p>This part, we just need to revise the test.py, and add the Bluetooth module we write above.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipFace</span><br><span class="line"><span class="keyword">from</span> picamera <span class="keyword">import</span> PiCamera</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> RPi.GPIO <span class="keyword">as</span> GPIO</span><br><span class="line"><span class="keyword">import</span> base <span class="number">64</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> bluetooth</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bluetooth.py <span class="keyword">import</span> bt_open, servo_init,bt_close</span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度人脸识别API账号信息</span></span><br><span class="line">APP_ID = <span class="string">&#x27;23679627&#x27;</span></span><br><span class="line">API_KEY = <span class="string">&#x27;iM3qIQZqCghHzF3DT4MSGvEo&#x27;</span></span><br><span class="line">SECRET_KEY = <span class="string">&#x27;bGon6650ssEl4IFppx57HEUG6UZSG7O2&#x27;</span></span><br><span class="line">client = AipFace(APP_ID, API_KEY, SECERET_KEY)</span><br><span class="line"><span class="comment"># 图像编码方式</span></span><br><span class="line">IMAGE_TYPE = <span class="string">&#x27;base64&#x27;</span></span><br><span class="line">camera = PiCamera()</span><br><span class="line"><span class="comment"># 用户组</span></span><br><span class="line">GROUP = <span class="string">&#x27;01&#x27;</span></span><br><span class="line"><span class="comment"># 拍照函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getimage</span>():</span></span><br><span class="line">    camera.resolution = (<span class="number">1024</span>,<span class="number">768</span>)</span><br><span class="line">    camera.start_preview()</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    camera.capture(<span class="string">&#x27;facetime.jpg&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 对图片格式进行转换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tramsimage</span>():</span></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;faceiamge.jpg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">    img = base64.b64encode(f.read())</span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"><span class="comment"># 上传到百度API进行人脸识别</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">go_api</span>(<span class="params">image</span>):</span></span><br><span class="line">    result = client.search(<span class="built_in">str</span>(image,<span class="string">&#x27;utf-8&#x27;</span>),IMAGE_TYPR, GROUP)</span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&#x27;error_msg&#x27;</span>] == <span class="string">&#x27;SUCCESS&#x27;</span>:</span><br><span class="line">        name = result[<span class="string">&#x27;result&#x27;</span>][<span class="string">&#x27;user_list&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;user_id&#x27;</span>]</span><br><span class="line">        score = result[<span class="string">&#x27;result&#x27;</span>][<span class="string">&#x27;user_list&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> score &gt; <span class="number">80</span>:</span><br><span class="line">            <span class="keyword">if</span> name == <span class="string">&#x27;ZhechengLiao&#x27;</span>:</span><br><span class="line">                print(<span class="string">&#x27;欢迎%s !&#x27;</span> % name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">&#x27;对不起，我不认识你&#x27;</span>)</span><br><span class="line">        	name = <span class="string">&#x27;Unknow&#x27;</span></span><br><span class="line">    		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># 将人员出入记录在log.txt中</span></span><br><span class="line">    	current_time = time.asctime(time.localtime(time.time()))</span><br><span class="line">    	f = <span class="built_in">open</span>(<span class="string">&#x27;log.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    	f.write(<span class="string">&#x27;Person:&#x27;</span>+name+<span class="string">&#x27;&#x27;</span>+<span class="string">&#x27;Time:&#x27;</span>+<span class="built_in">str</span>(current_time)+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    	f.close()</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> result[<span class="string">&#x27;error_msg&#x27;</span>] == <span class="string">&#x27;pic not has face&#x27;</span>:</span><br><span class="line">        print(<span class="string">&#x27;检测不到人脸&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(result[<span class="string">&#x27;error_code&#x27;</span>]+<span class="string">&#x27;&#x27;</span>+result[<span class="string">&#x27;error_code&#x27;</span>])</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	servo_init()</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">&#x27;准备&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">            getimage()</span><br><span class="line">            img = transimage()<span class="comment"># 转换照片格式</span></span><br><span class="line">            res = go_api(img)<span class="comment"># 将转换了格式的图片上传到百度云</span></span><br><span class="line">            <span class="keyword">if</span> res == <span class="number">1</span>: <span class="comment"># 是人脸库中的人</span></span><br><span class="line">                bt_open()</span><br><span class="line">                print(<span class="string">&#x27;开门&#x27;</span>)</span><br><span class="line">            <span class="keyword">elif</span> res == -<span class="number">1</span>:</span><br><span class="line">            	print(<span class="string">&#x27;未看见你，我要关门了&#x27;</span>)</span><br><span class="line">            	time.sleep(<span class="number">3</span>)</span><br><span class="line">            	bt_close()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">&#x27;关门&#x27;</span>)</span><br><span class="line">                bt_close()</span><br><span class="line">            time.sleep(<span class="number">3</span>)</span><br><span class="line">            print(<span class="string">&#x27;稍等三秒进入下一个&#x27;</span>)</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<p>Well, the whole project is done.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Project</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Arduino</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/06/Access_Control/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -732,8 +249,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
