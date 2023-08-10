@@ -18,7 +18,7 @@ const projectSections = [
     data: [
       {
         tags: ["Python", "NumPy", "Pandas"],
-        bgImage: "/nn.png",
+        bgImage: "https://raw.githubusercontent.com/ZhechengLiao/cdn/master/uploads/nn.jpg",
 
         description: `Atomgrad is a simple version AI frame work like pytorch following micrograd. Build from scratch to implement neuron network training and a lot of deep learning alogrithm, including transformers, GPT, stable diffusion, etc...(This is only for learning deep learning)`,
         title: "Atomgrad",
@@ -32,7 +32,7 @@ const projectSections = [
       },
       {
         tags: ["Python", "Physics", "Web Crawler"],
-        bgImage: "/Davinci.png",
+        bgImage: "https://raw.githubusercontent.com/ZhechengLiao/cdn/master/uploads/Davinci.png",
         description: `As we all know, Leonardo Da Vinci was a talented scientists in lots of areas, such as physics, math, art, and etc. I'd like to build a pretrained GPT model like Davinci to help human accelerate basic science like physics and math. This is the dataset for the GPT model.`,
         title: "Davinci Dataset",
         buttons: [
@@ -46,7 +46,7 @@ const projectSections = [
         tags: ["Tensorflow", "PyTorch", "Tensorflow", "Python", "NLP", "Data Science", "Pandas", "NumPy"],
         title: "NLP - Comment Toxic Classifier",
         bgImage: 
-          "/toxic.png",
+          "https://raw.githubusercontent.com/ZhechengLiao/cdn/master/uploads/toxic.png",
         description: `This project is help me understand the flow of NLP development by using Tensorflow and PyTorch.`,
         buttons: [
           {
@@ -59,7 +59,7 @@ const projectSections = [
         tags: ["Python", "HuggingFace", "Math", "PyTorch"],
         title: "WebUI Stable Diffusion",
         description: `During working at TaDa, I help them build a web version Stable Diffusion for users to play around with generating images.`,
-        bgImage: "/sd.png",
+        bgImage: "https://raw.githubusercontent.com/ZhechengLiao/cdn/master/uploads/sd.png",
         buttons: [
           {
             href: "https://github.com/ZhechengLiao/Web3Demo-Test/tree/patch-1",
