@@ -1,192 +1,105 @@
 defaultTags:
-  - ddi
   - cs
-  - aops
+
+expeirence:
+  - location: Kaggler - Freelance
+    date: "Sep 2023 - Present"
+    info:
+
+  - location: FlashAI - CEO&Co-Founder  
+    date: "Jan 2023 - Aug 2023" 
+    info:
+      - "Try to measuring human's contribution of AI by using blockchain technology, help human find their position in AI era"
+      - "Organize a team of 10+ people to develop a no-code AI model community, and think about the place of people in the AI era from the user's perspective"
+      - "Responsible for promoting and connecting various positions, including development, algorithm, design, operation, etc."
+  - location: UCSB Information Technology - Web Developer 
+    date: "Apr 2023 - Jul 2023" 
+    info:
+      - "Redesign Health Portal Web page by using Figma"
+      - "According to UI, change the website by using Bootstrap, HTML, CSS, and javascript"
+      - "Change the account authorization to GA4"
+  - location: TaDa - AI/ML Engineer&Co-Founder  
+    date: "Nov 2022 - Mar 2023" 
+    info:
+      - "Completed the development of AIGC tools from 0 to 1 by using PyTorch, and accumulated experience in building AI models"
+      - "Familiar with Stable Diffusion, GPT, and other AIGC models"
+      - "Completed the development of the website from 0 to 1, perfected my skills in building website, learned HTML, CSS, Bootstrap, React, and other technology stacks"
+      - "Exposed to a lot of knowledge about products, such as UI/UX design, and how to operate a product from 0 to 1"
+  - location: RaysData - Python Intership  
+    date: "Jul 2021 - Sep 2021" 
+    info:
+      - "Use Python and SQL to do data manipulation"
+      - "Use Python to do enterprise level web crawler"
+
 
 education:
-  - location: University of Minnesota, Twin Cities
-    date: ""
-    url: "Double B.S. in Computer Science & Mathematics"
-    info:
-      - "**GPA: 4.0**, dual enrolled in high school and then **took a gap year** before college."
-      - "Competitive Programming (USACO Gold Division) with **C++**, US Congressional App Challenge Winner"
-      - 1st place Education @ HackMIT (top 10 overall), 1st place Hack UIowa, 1st place CuseHacks, 1st place Sonoma Hacks
-  - name: Brookings High School
-    date: August 2017 - May 2021
-    info:
-      - "GPA: 4.043 - Honors Scholar"
-      - "SAT: 1570/1600 (800 math, 770 reading-writing)"
-      - "Activities: National Honor Society President, Science Olympiad Captain, Science Bowl Captain, State QuizBowl Captain, Varsity Debater + National Qualifier"
-    tags: [ high school ]
+  - location: University of Calfornia, Santa Barbara
+    date: "Sep 2022 - Aug 2026"
+    info: 
+      - "B.S. major in Data Science & minor in Physics"
 
-
-gapYear:
-  - location: Fiveable
-    title: Software Engineer
-    url: Full Time/Gap Year, fiveable.me
-    href: https://hi.fiveable.me
-    date: "Sep 2021 - Aug 2022"
-    tags: [ cs ]
+  - location: Stanford University
+    date: "June 2023 - Aug 2023" 
+    url: "Visiting Student"
     info:
-      - Architected and implemented low-level **WebRTC** voice and video calling functionality. Started as a proof-of-concept and then scaled to general availability on Google Kubernetes Engine.
-      - Reduced application load times by 20x on high-traffic pages by optimizing database queries, network requests, and re-renders.
-      - Refactored backend to a REST-ful API and automated tests with **Jest and Puppeteer**, improving performance and stability.
-      - Deployed and managed servers with **Terraform** on Google Compute Engine for internal tools used company-wide.
-      - Designed and built user-facing features using **Typescript, Next.js, React, Redux, Material UI, and MongoDB**.
-  - location: Art of Problem Solving
-    title: Teaching Assistant/Grader
-    url: Contractor, aops.com
-    href: https://artofproblemsolving.com
-    date: Aug 2021 - Present
-    tags: [ math, aops ]
+      - "CS 229: Machine Learning"
+      - "CS 221: AI"
+  
+  - location: International Department of Shude High School
+    date: "Sep 2019 - Aug 2022"
     info:
-      - Assist twice a week in teaching online classes of 20-50 students answering questions, guiding students, and helping debug.
-      - Provide detailed logical and stylistic feedback to students' advanced math and **Python** solutions. Have graded introductory (Pre-Algebra, Geometry, Counting and Probability, etc.) to advanced (Calculus, WOOT, etc.) homework.
-#      - Analyzed Python and math homework with set , and wrote feedback to guide students to the solution
-#      - Assist instructor in teaching online math and Python lectures, with approx. 40 students per class.
-
-highSchool:
-  - location: Bobcat Notify
-    title: Founder
-    url: Part Time, notify.samyok.us
-    href: https://notify.samyok.us
-    date: Nov 2019 - May 2021
-    tags: [ cs ]
-    info:
-      - Published **Android and iOS apps** for Brookings High School students, staff, and parents for fast and reliable emergency alerts.
-      - Gained 2000+ downloads, more than **2.5x the number of students**. The school district offered to purchase the app for every school.
-      - Collaborated with school administration and IT to deliver timely and relevant push notifications and in-app updates.
-      - Maintained an average rating of 4.9 stars across both app stores with over 50 reviews.
-  - location: Scioly.org
-    title: Developer
-    url: Part Time, scioly.org
-    href: https://scioly.org
-    date: Sep 2019 - Aug 2022
-    tags: [ cs ]
-    info:
-#      - Ensured site uptime by maintaining servers for critical projects.
-      - Developed custom **PHP** image gallery and file storage server to be used by more than **68,000** registered users.
-      - Implemented an image optimization service to reduce image file sizes by up to 80% and serve at the edge.
-  - location: Freelance Web Developer
-    date: May 2018 - Nov 2019
-    url: Contractor
-    tags: [ freelance ]
-    info:
-      - Built and deployed a global network of servers to publish messages in under 200ms to over 7,500 concurrent users globally.
-      - Developed complex web scraping bots and websites to successfully gather information requested by clients quickly and accurately.
-  - location: Brookings Math Circle
-    title: Co-Founder/Instructor
-    url: brookingsmath.org
-    href: https://brookingsmath.org
-    date: 2016 - 2021
-    tags: [ math ]
-    info:
-      - Volunteer taught three‐hour classes every week during the summer, with lessons ranging from single variable algebra to AIME‐level geometry. Achieved goal of 20+ attendees per class for the last three years.
-      - Created curriculum by writing handouts, homework, and mock contests, resulting in over 100 pages of instructional materials over 5 years.
-      - Ensured students’ success with a smooth transition into competitive math, contributing to the local MATHCOUNTS team growing by 60% to more than 30 members.
+      - "Founder of Robotic Club"
 
 projects:
-  - location: Anony.news
-    title: 3rd @ Hack for Humanity 2022
+  - location: Atomgrad
+    title: 
     url: github
-    href: https://github.com/MiniHacks/anonygoose
-    date: Python (OpenCV), FFmpeg, Next.js, MongoDB, Docker
+    href: https://github.com/ZhechengLiao/atomgrad 
+    date: Python, Deep Learning, NumPy
     tags: [ cs ]
     info:
-      - Used **OpenCV** and **OpenFace** to detect, identify, and selectively blur all unrecognized faces in real time.
-      - Automated deployments to DigitalOcean droplets using Docker Compose and GitHub Actions.
-      - Implemented the frontend to connect to a RTMP proxy server with integrated streaming to Youtube (or any other RTMP endpoint).
-  - location: Lecture.ninja
-    title: 2nd (Remote Learning) @ TAMUHack 2022
+      - Atomgrad is a simple version AI frame work like pytorch following micrograd. Build from scratch to implement neuron network training and a lot of deep learning alogrithm, including transformers, GPT, stable diffusion, etc...(This is only for learning deep learning) 
+  - location: Davinci Dataset
+    title: 
     url: github
-    href: https://github.com/MiniHacks/LectureNinja
-    date: Python (OpenCV, FastAPI), Next.js, Docker
+    href: https://github.com/ZhechengLiao/Davinci_Dataset
+    date: Python, BeautifulSoup, Web Crawler 
     tags: [ cs ]
     info:
-      - Parsed user-uploaded lecture videos to create an interactive transcript interlaced with parsed slides from the video.
-      - Leveraged **OpenCV** to extract lecture slides and Google Cloud Speech APIs for transcription via a FastAPI microservice.
-      - Built frontend to upload video files to Google Cloud Storage and then fetch relevant data from a MongoDB instance.
-  - location: "Dakota Debate Institute"
-    title: Summer 2021-2022
-    url: "dakotadebate.org"
-    href: "https://dakotadebate.org"
-    date: Next.js, Chakra, Express, MongoDB
-    tags: [ ddi ]
+      - I'd like to build a pretrained GPT model like Davinci to help human accelerate basic science like physics and math. This is the dataset for the GPT model. 
+  - location: Comment Toxic Classifier
+    title: 
+    url: github
+    href: https://github.com/ZhechengLiao/NLP-comment-toxic
+    date: PyTorch, Deep Learning, NLP
+    tags: [ cs ]
     info:
-      - Founded and directed a 501(c)3 nonprofit to run a week-long, overnight debate summer camp with over 45 students and 10 staff.
-      - Developed the website and classroom management system for our free live-streamed classes.
-#      - Managed a $10k/month Google AdWords campaign which was responsible for roughly 50% of web traffic.
+      - This project is help me understand the flow of NLP development by using Tensorflow and PyTorch. 
+  - location: WebUI Stable Diffusion  
+    title: 
+    url: github
+    href: https://github.com/ZhechengLiao/Web3Demo-Test/tree/patch-1
+    date: Python, Deep Learning, Stable Diffusion, Hugging Face
+    tags: [ cs ]
+    info:
+      - During working at TaDa, I help them build a web version Stable Diffusion for users to play around with generating images. 
+      
 
 awards:
-  - name: US Congressional App Challenge Winner
-    tags: [ cs ]
-  - name: AMC 10/12 Honor Roll (2018, 2019, 2020, 2021)
-    tags: [ math ]
-  - name: Science Bowl State Champion (2021)
-    tags: [ misc ]
-  - name: SDSU Programming Design Contest Winner (2020)
-    tags: [ high school ]
-  - name: National Merit Semifinalist
-    tags: [ academia ]
-  - name: US Presidential Scholar Candidate
-    tags: [ academia ]
-  - name: USACO Gold Division
-    tags: [ cs ]
   - name: USAMTS Honorable Mention (2017)
-    tags: [ math ]
-  - name: Science Olympiad State Champion (2021)
-    tags: [ misc ]
 
 languages:
-  - name: Typescript
-    tags: [ cs ]
-  - name: C++
-    tags: [ cs ]
   - name: Python
-    tags: [ cs ]
-  - name: JavaScript
-    tags: [ cs ]
-  - name: React, React Native
-    tags: [ cs ]
-  - name: Java
-    tags: [ cs ]
-  - name: Redux
-    tags: [ cs ]
-  - name: PHP
-    tags: [ cs ]
-  - name: NodeJS
-    tags: [ cs ]
-  - name: LaTeX
-    tags: [ math ]
-  - name: HTML/CSS
-    tags: [ cs ]
-  - name: SASS
-    tags: [ cs ]
-
-
-interests:
-  - name: Director of nonprofit debate camp (Dakota Debate Institute)
-    tags: [ misc ]
-  - name: Political Theory
-    tags: [ misc ]
-  - name: Hiking
-    tags: [ misc ]
-  - name: Kayaking
-    tags: [ misc ]
+  - name: Rust
+  - name: C\C++
+  - name: R
 
 technologies:
-  - name: MongoDB, MySQL, Firebase/Firestore
-    tags: [ cs ]
-  - name: Figma
-    tags: [ cs ]
-  - name: Google Cloud Platform
-    tags: [ cs ]
-  - name: Kubernetes
-    tags: [ cs ]
-  - name: Docker
-    tags: [ cs ]
-  - name: Git/Github
-    tags: [ cs ]
+  - name: PyTorch 
+  - name: NumPy
+  - name: Pandas
+  - name: Scikit-learn
+  - name: Supervised Learning
+  - name: Deep Learning
+  - name: Git
   - name: Vim
-    tags: [ cs ]
-

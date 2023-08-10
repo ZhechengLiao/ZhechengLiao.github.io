@@ -24,11 +24,11 @@ const TextLink = (props) => (
 
 // if type is array, first one is default
 const data = {
-  email: ["nepal017@umn.edu", "sam@yok.dev"],
-  phone: ["(###) ###-####", "(605) 592-6144"],
-  github: ["/samyok", "github.com/samyok"],
-  linkedin: ["/in/samyok", "linkedin.com/in/samyok"],
-  url: ["yok.dev", "www.yok.dev", "//yok.dev"],
+  email: ["zhechengliao@gmail.com", "zhecheng@ucsb.edu"],
+  phone: ["(805)-869-9003", ""],
+  github: ["/Zhecheng Liao", "https://github.com/ZhechengLiao"],
+  linkedin: ["/in/zhechengliao", "https://www.linkedin.com/in/zhecheng-tim-liao-561710253/"],
+  url: ["zhechengliao.github.io"],
 };
 
 const autoPrintIndices = {
@@ -73,7 +73,7 @@ export const ResumeTop = ({ isEditing }) => {
   return (
     <Box pt={6} px={2} textAlign={"center"}>
       <Heading size={"xl"} mb={1}>
-        Samyok Nepal
+         Tim Liao
       </Heading>
       <Flex justifyContent={"center"}>
         <TextLink href={`mailto:${getValue("email")}`} onEdit={cycleData("email")} icon={faPaperPlane}>
@@ -84,13 +84,13 @@ export const ResumeTop = ({ isEditing }) => {
         </TextLink>
       </Flex>
       <Flex justifyContent={"center"} mt={0.5}>
-        <TextLink href={"https://yok.dev"} onEdit={cycleData("url")} icon={faGlobe}>
+        <TextLink href={"https://zhechengliao.github.io"} onEdit={cycleData("url")} icon={faGlobe}>
           {getValue("url")}
         </TextLink>
-        <TextLink href={"https://github.com/samyok"} onEdit={cycleData("github")} icon={faGithub}>
+        <TextLink href={"https://zhechengliao.github.io/"} onEdit={cycleData("github")} icon={faGithub}>
           {getValue("github")}
         </TextLink>
-        <TextLink href={"https://linkedin.com/in/samyok"} onEdit={cycleData("linkedin")} icon={faLinkedin}>
+        <TextLink href={"https://www.linkedin.com/in/zhecheng-tim-liao-561710253/"} onEdit={cycleData("linkedin")} icon={faLinkedin}>
           {getValue("linkedin")}
         </TextLink>
       </Flex>

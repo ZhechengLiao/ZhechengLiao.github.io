@@ -25,122 +25,35 @@ export function Footer(params) {
   const [loading, setLoading] = useState(false);
   return (
     <Hide breakpoint={"print"}>
-      <Box bg={"rgba(0,0,0,0.1)"} width={"100%"} p={5} m={0} id={"contact"}>
-        <Flex
-          alignItems={"center"}
-          justifyContent={"center"}
-          mx={[2, 5, 20]}
-          pt={10}
-          flexDir={"column"}
-          pb={2}>
-          <MyHeading display={"inline"} px={3} size={"2xl"}>
-            Contact Me
-          </MyHeading>
-          <chakra.p pt={4}>I&apos;ll get back to you as soon as I can!</chakra.p>
-        </Flex>
-
-        <Flex px={[2, 5, 10]} justifyContent={"center"} flexDir={"column"} py={10} alignItems={"center"}>
-          <VStack spacing={5} flexGrow={1} w={"100%"} maxW={"700px"}>
-            <Input
-              isDisabled={loading}
-              variant="filled"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-            <Input
-              isDisabled={loading}
-              variant="filled"
-              placeholder="Email/Phone"
-              value={contact}
-              onChange={(e) => {
-                setContact(e.target.value);
-              }}
-            />
-            <Textarea
-              isDisabled={loading}
-              variant="filled"
-              placeholder="Message"
-              value={msg}
-              onChange={(e) => {
-                setMsg(e.target.value);
-              }}
-            />
-            <Button
-              isDisabled={loading}
-              leftIcon={<AiOutlineSend size={"1.5em"} />}
-              onClick={() => {
-                trackEvent("Contact Form.submit", "contact_form");
-                setLoading(true);
-                fetch("/api/contactForm", {
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ name, contact, msg }),
-                  method: "post",
-                })
-                  .then((r) => r.json())
-                  .then((r) => {
-                    toast({
-                      title: "Message recieved.",
-                      description: "I'll get back to you ASAP.",
-                      status: "success",
-                      duration: 9000,
-                      isClosable: true,
-                    });
-                    setContact("");
-                    setName("");
-                    setMsg("");
-                  })
-                  .catch((e) => {
-                    toast({
-                      title: "Something went wrong.",
-                      description: "Send me an email, this form isn't working :(",
-                      status: "error",
-                      duration: 9000,
-                      isClosable: true,
-                    });
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
-              }}>
-              Send Message
-            </Button>
-          </VStack>
-        </Flex>
-      </Box>
-      <Flex bg={"rgba(0,0,0,0.2)"} width={"100%"} p={5} m={0} flexDir={"column"}>
+            <Flex bg={"rgba(0,0,0,0.2)"} width={"100%"} p={5} m={0} flexDir={"column"}>
         <Flex justifyContent={"center"} flexWrap={"wrap"} pb={5}>
-          <Link m={2} href={"https://github.com/samyok"} target={"_blank"}>
+          <Link m={2} href={"https://github.com/ZhechengLiao"} target={"_blank"}>
             <Flex m={2} alignItems={"center"}>
               <AiOutlineGithub size={"2em"} />
               <chakra.p ml={2} fontFamily={"Fira Code"}>
-                /samyok
+                /ZhechengLiao
               </chakra.p>
             </Flex>
           </Link>
-          <Link m={2} href={"https://linkedin.com/in/samyok"} target={"_blank"}>
+          <Link m={2} href={"https://www.linkedin.com/in/zhecheng-tim-liao-561710253/"} target={"_blank"}>
             <Flex m={2} alignItems={"center"}>
               <AiFillLinkedin size={"2em"} />
               <chakra.p ml={2} fontFamily={"Fira Code"}>
-                /in/samyok
+                /in/Zhecheng(Tim) Liao
               </chakra.p>
             </Flex>
           </Link>
-          <Link m={2} href={"mailto:sam@yok.dev"} target={"_blank"}>
+          <Link m={2} href={"mailto:zhechengliao@gmail.com"} target={"_blank"}>
             <Flex m={2} alignItems={"center"}>
               <HiMail size={"2em"} />
               <chakra.p ml={2} fontFamily={"Fira Code"}>
-                sam@yok.dev
+                zhechengliao@gmail.com 
               </chakra.p>
             </Flex>
           </Link>
         </Flex>
         <Text textAlign={"center"} color={"gray.900"} fontSize={"sm"}>
-          Portfolio made by Samyok Nepal | <Link href={"https://github.com/samyok/portfolio"}>Github</Link>
+          Portfolio made by Zhecheng Liao | <Link href={"https://github.com/samyok/portfolio"}>Github</Link>
         </Text>
       </Flex>
     </Hide>

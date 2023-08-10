@@ -22,8 +22,8 @@ const SelfPortrait = () => {
         bg={"transparent"}
         width={96}
         height={96}
-        name="Samyok Nepal"
-        src={imgSrc("/img/sunglasses.jpeg", 3840)}
+        name="Tim Liao"
+        src={imgSrc("/img/profile2.jpeg", 3840)}
         unoptimized={true}
         priority={true}
         placeholder="blur"
@@ -39,7 +39,6 @@ const Pages = () => {
   const LINKS = [
     { name: "Projects", href: "/#projects" },
     { name: "Resume", href: "/resume" },
-    { name: "Contact", href: "#contact" },
   ];
 
   const router = useRouter();
@@ -64,8 +63,8 @@ const Pages = () => {
 
 const SocialLinks = () => {
   const LINKS = [
-    { name: "/samyok", icon: faGithub, href: "https://github.com/samyok" },
-    { name: "/in/samyok", icon: faLinkedin, href: "https://linkedin.com/in/samyok" },
+    { name: "/Zhecheng Liao", icon: faGithub, href: "https://github.com/ZhechengLiao" },
+    { name: "/in/Zhecheng(Tim) Liao", icon: faLinkedin, href: "https://www.linkedin.com/in/zhecheng-tim-liao-561710253/" },
     // { name: "sam@yok.dev", icon: faPaperPlane, href: "mailto:sam@yok.dev" },
   ];
   return (
@@ -101,7 +100,7 @@ export default function Navigation() {
             <SelfPortrait />
             <Flex flexDir={"column"} pl={2}>
               <Heading size={"xl"} mb={1}>
-                Samyok Nepal
+                  Zhecheng(Tim) Liao
               </Heading>
               <Pages />
             </Flex>

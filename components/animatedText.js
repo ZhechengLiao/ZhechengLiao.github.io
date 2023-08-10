@@ -9,7 +9,7 @@ const HEADING_TEXTS_AND_COLORS = [
     color: "pink.500",
   },
   {
-    text: "teach",
+    text: "create",
     color: "blue.500",
   },
   {
@@ -17,7 +17,7 @@ const HEADING_TEXTS_AND_COLORS = [
     color: "green.500",
   },
   {
-    text: "tutor",
+    text: "research",
     color: "purple.500",
   },
 ].map((a) => ({ ...a, text: a.text + Array(25).fill(" ").join("") }));

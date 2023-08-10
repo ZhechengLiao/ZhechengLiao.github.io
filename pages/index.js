@@ -17,34 +17,25 @@ export function imgSrc(url, width = 3840) {
 
 export default function Home() {
   const wordChanged = (newIndex) => {
-    // console.log({newIndex});
+    //console.log({newIndex});
   };
   return (
     <Box>
       <Head>
-        <title>Samyok Nepal</title>
+        <title>Tim Liao</title>
         <meta
           name="description"
-          content="Hey! I'm Samyok Nepal, a coder in the midwest. Here's a list of all my projects!"
+          content="Hey! I'm Tim Liao, a coder. Here's a list of all my projects!"
         />
-        <link rel="canonical" href="https://yok.dev/" />
-        <meta property="og:url" content="https://yok.dev/" />
+        <link rel="canonical" href="https://zhechengliao.github.io" />
+        <meta property="og:url" content="https://zhechengliao.github.io" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Samyok Nepal" />
+        <meta property="og:title" content="Tim Liao" />
         <meta
           property="og:description"
-          content="Hey! I'm Samyok Nepal, a coder in the midwest. Here's a list of all my projects!"
+          content="Hey! I'm Tim Liao, a coder. Here's a list of all my projects!"
         />
-        <meta property="og:image" content="/og_image_index.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="yok.dev" />
-        <meta property="twitter:url" content="https://yok.dev/" />
-        <meta name="twitter:title" content="Samyok Nepal" />
-        <meta
-          name="twitter:description"
-          content="Hey! I'm Samyok Nepal, a coder in the midwest. Here's a list of all my projects!"
-        />
-        <meta name="twitter:image" content="/og_image_index.png" />
+       
       </Head>
 
       <main>
@@ -65,7 +56,7 @@ export default function Home() {
             textAlign={"center"}
             size={"4xl"}>
             <chakra.span className={styles.wiggle}>👋</chakra.span>
-            Hey, I&apos;m Samyok!
+            Hi, I&apos;m Tim Liao!
           </MyHeading>
           <MyHeading size={"lg"} color={"gray.400"} m={0} mb={-16} p={0} fontWeight={400}>
             What do I do?
