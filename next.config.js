@@ -25,3 +25,14 @@ module.exports = {
     ];
   },
 };
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+
+ // Add basePath
+  basePath: '/#projects',
+
+}
+
+module.exports = nextConfig
