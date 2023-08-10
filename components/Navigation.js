@@ -23,7 +23,7 @@ const SelfPortrait = () => {
         width={96}
         height={96}
         name="Tim Liao"
-        src={imgSrc("/img/profile2.jpeg", 3840)}
+        src={imgSrc("https://raw.githubusercontent.com/ZhechengLiao/cdn/master/uploads/profile2.jpeg", 3840)}
         unoptimized={true}
         priority={true}
         placeholder="blur"
