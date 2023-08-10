@@ -1,11 +1,4 @@
-# My Portfolio!
-
-[![A portfolio preview](./public/og_image_index.png "My Portfolio")](https://yok.dev)
-
-## The Typewriter Effect
-The typewriter effect is mostly handled by the [AnimatedText](./components/animatedText.js) component I wrote. 
-It's a pretty basic, but you can use it on your own websites :)
-
+# Porfolio
 
 ## Run the Project
 First, run the development server:
